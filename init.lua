@@ -349,20 +349,4 @@ textadept.editing.api_files.css = {
   _HOME .. '/modules/css/api', _USERHOME .. '/modules/css/api'
 }
 
--- Commands.
-
----
--- Container for CSS-specific key bindings.
--- @class table
--- @name _G.keys.css
-keys.css = {}
-
--- Snippets.
-
----
--- Container for CSS-specific snippets.
--- @class table
--- @name _G.snippets.css
-snippets.css = {}
-
 return M
