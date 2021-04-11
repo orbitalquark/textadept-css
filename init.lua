@@ -1,4 +1,4 @@
--- Copyright 2007-2020 Mitchell. See LICENSE.
+-- Copyright 2007-2021 Mitchell. See LICENSE.
 
 local M = {}
 
@@ -11,8 +11,7 @@ module('_M.css')]]
 -- Sets default buffer properties for CSS files.
 events.connect(events.LEXER_LOADED, function(name)
   if name ~= 'css' then return end
-  buffer.word_chars =
-    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-'
+  buffer.word_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-'
 end)
 
 -- Autocompletion and documentation.
@@ -22,82 +21,65 @@ local XPM = textadept.editing.XPM_IMAGES
 
 -- List of selectors available for autocompletion.
 local selectors = {
-  'a', 'abbr', 'acronym', 'address', 'area', 'b', 'base', 'big', 'blockquote',
-  'body', 'br', 'button', 'caption', 'cite', 'code', 'col', 'colgroup', 'dd',
-  'del', 'dfn', 'div', 'dl', 'dt', 'em', 'fieldset', 'form', 'frame',
-  'frameset', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'hr', 'html', 'i',
-  'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link',
-  'map', 'meta', 'noframes', 'noscript', 'object', 'ol', 'optgroup', 'option',
-  'p', 'param', 'pre', 'q', 'samp', 'script', 'select', 'small', 'span',
-  'strike', 'strong', 'style', 'sub', 'sup', 'table', 'tbody', 'td', 'textarea',
-  'tfoot', 'th', 'thead', 'title', 'tr', 'tt', 'ul', 'var'
+  'a', 'abbr', 'acronym', 'address', 'area', 'b', 'base', 'big', 'blockquote', 'body', 'br',
+  'button', 'caption', 'cite', 'code', 'col', 'colgroup', 'dd', 'del', 'dfn', 'div', 'dl', 'dt',
+  'em', 'fieldset', 'form', 'frame', 'frameset', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'hr',
+  'html', 'i', 'iframe', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'map',
+  'meta', 'noframes', 'noscript', 'object', 'ol', 'optgroup', 'option', 'p', 'param', 'pre', 'q',
+  'samp', 'script', 'select', 'small', 'span', 'strike', 'strong', 'style', 'sub', 'sup', 'table',
+  'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'title', 'tr', 'tt', 'ul', 'var'
 }
-for i = 1, #selectors do
-  selectors[i] = completion:format(selectors[i], XPM.CLASS)
-end
+for i = 1, #selectors do selectors[i] = completion:format(selectors[i], XPM.CLASS) end
 
 -- List of properties available for autocompletion.
 local properties = {
-  'azimuth', 'background', 'background-attachment', 'background-color',
-  'background-image', 'background-position', 'background-repeat', 'border',
-  'border-bottom', 'border-bottom-color', 'border-bottom-style',
-  'border-bottom-width', 'border-collapse', 'border-color', 'border-left',
+  'azimuth', 'background', 'background-attachment', 'background-color', 'background-image',
+  'background-position', 'background-repeat', 'border', 'border-bottom', 'border-bottom-color',
+  'border-bottom-style', 'border-bottom-width', 'border-collapse', 'border-color', 'border-left',
   'border-left-color', 'border-left-style', 'border-left-width', 'border-right',
-  'border-right-color', 'border-right-style', 'border-right-width',
-  'border-spacing', 'border-style', 'border-top', 'border-top-color',
-  'border-top-style', 'border-top-width', 'border-width', 'bottom',
-  'caption-side', 'clear', 'clip', 'color', 'content', 'counter-increment',
-  'counter-reset', 'cue', 'cue-after', 'cue-before', 'cursor', 'direction',
-  'display', 'elevation', 'empty-cells', 'float', 'font', 'font-family',
-  'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant',
-  'font-weight', 'height', 'left', 'letter-spacing', 'line-height',
-  'list-style', 'list-style-image', 'list-style-position', 'list-style-type',
-  'margin', 'margin-bottom', 'margin-left', 'margin-right', 'margin-top',
-  'max-height', 'max-width', 'min-height', 'min-width', 'opacity', 'orphans',
-  'outline', 'outline-color', 'outline-style', 'outline-width', 'overflow',
-  'padding', 'padding-bottom', 'padding-left', 'padding-right', 'padding-top',
-  'page-break-after', 'page-break-before', 'page-break-inside', 'pause',
-  'pause-after', 'pause-before', 'pitch', 'pitch-range', 'play-during',
-  'position', 'quotes', 'richness', 'right', 'speak', 'speak-header',
-  'speak-numeral', 'speak-punctuation', 'speech-rate', 'stress', 'table-layout',
-  'text-align', 'text-decoration', 'text-indent', 'text-shadow',
-  'text-transform', 'top', 'unicode-bidi', 'vertical', 'vertical-align',
-  'visibility', 'voice-family', 'volume', 'white-space', 'widows', 'width',
-  'word-spacing', 'z-index'
+  'border-right-color', 'border-right-style', 'border-right-width', 'border-spacing',
+  'border-style', 'border-top', 'border-top-color', 'border-top-style', 'border-top-width',
+  'border-width', 'bottom', 'caption-side', 'clear', 'clip', 'color', 'content',
+  'counter-increment', 'counter-reset', 'cue', 'cue-after', 'cue-before', 'cursor', 'direction',
+  'display', 'elevation', 'empty-cells', 'float', 'font', 'font-family', 'font-size',
+  'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'height', 'left',
+  'letter-spacing', 'line-height', 'list-style', 'list-style-image', 'list-style-position',
+  'list-style-type', 'margin', 'margin-bottom', 'margin-left', 'margin-right', 'margin-top',
+  'max-height', 'max-width', 'min-height', 'min-width', 'opacity', 'orphans', 'outline',
+  'outline-color', 'outline-style', 'outline-width', 'overflow', 'padding', 'padding-bottom',
+  'padding-left', 'padding-right', 'padding-top', 'page-break-after', 'page-break-before',
+  'page-break-inside', 'pause', 'pause-after', 'pause-before', 'pitch', 'pitch-range',
+  'play-during', 'position', 'quotes', 'richness', 'right', 'speak', 'speak-header',
+  'speak-numeral', 'speak-punctuation', 'speech-rate', 'stress', 'table-layout', 'text-align',
+  'text-decoration', 'text-indent', 'text-shadow', 'text-transform', 'top', 'unicode-bidi',
+  'vertical', 'vertical-align', 'visibility', 'voice-family', 'volume', 'white-space', 'widows',
+  'width', 'word-spacing', 'z-index'
 }
-for i = 1, #properties do
-  properties[i] = completion:format(properties[i], XPM.METHOD)
-end
+for i = 1, #properties do properties[i] = completion:format(properties[i], XPM.METHOD) end
 
 -- List of pseudoclasses available for autocompletion.
-local pseudoclasses = {
-  'active', 'first-child', 'focus', 'hover', 'lang', 'link', 'visited',
-}
-for i = 1, #pseudoclasses do
-  pseudoclasses[i] = completion:format(pseudoclasses[i], XPM.SIGNAL)
-end
+local pseudoclasses = {'active', 'first-child', 'focus', 'hover', 'lang', 'link', 'visited'}
+for i = 1, #pseudoclasses do pseudoclasses[i] = completion:format(pseudoclasses[i], XPM.SIGNAL) end
 
 -- List of pseudoelements available for autocompletion.
 local pseudoelements = {'after', 'before', 'first-letter', 'first-line'}
-for i = 1, #pseudoelements do
-  pseudoelements[i] = completion:format(pseudoelements[i], XPM.SLOT)
-end
+for i = 1, #pseudoelements do pseudoelements[i] = completion:format(pseudoelements[i], XPM.SLOT) end
 
 -- List of media types available for autocompletion.
 local medias = {
-  'all', 'aural', 'braille', 'embossed', 'handheld', 'print', 'projection',
-  'screen', 'tty', 'tv'
+  'all', 'aural', 'braille', 'embossed', 'handheld', 'print', 'projection', 'screen', 'tty', 'tv'
 }
 for i = 1, #medias do medias[i] = completion:format(medias[i], XPM.TYPEDEF) end
 
+-- LuaFormatter off
 -- Map of properties to their value lists.
--- Most of the properties that are commented out are defined later, and in terms
--- of other properties. For example, "border" is defined in terms of
--- "border-color", "border-style", and "border-width".
+-- Most of the properties that are commented out are defined later, and in terms of other
+-- properties. For example, "border" is defined in terms of "border-color", "border-style",
+-- and "border-width".
 local values = {
   azimuth = {
-    'left-side', 'far-left', 'left', 'center-left', 'center', 'center-right',
-    'right', 'far-right', 'right-side', 'behind', 'leftwards', 'rightwards'
+    'left-side', 'far-left', 'left', 'center-left', 'center', 'center-right', 'right', 'far-right',
+    'right-side', 'behind', 'leftwards', 'rightwards'
   },
   --background =
   ['background-attachment'] = {'fixed', 'scroll'},
@@ -122,8 +104,7 @@ local values = {
   --['border-right-width'] =
   --['border-spacing'] = nil,
   ['border-style'] = {
-    'none', 'hidden', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge',
-    'inset', 'outset'
+    'none', 'hidden', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset'
   },
   --['border-top'] =
   --['border-top-color'] =
@@ -136,8 +117,8 @@ local values = {
   clip = {'auto', 'rect('},
   color = {'rgb('},
   content = {
-    'none', 'normal', 'counter', 'attr(', 'open-quote', 'close-quote',
-    'no-open-quote', 'no-close-quote', 'url('
+    'none', 'normal', 'counter', 'attr(', 'open-quote', 'close-quote', 'no-open-quote',
+    'no-close-quote', 'url('
   },
   ['counter-increment'] = {'none'},
   ['counter-reset'] = {'none'},
@@ -145,16 +126,14 @@ local values = {
   --['cue-after'] =
   --['cue-before'] =
   cursor = {
-    'url(', 'auto', 'crosshair', 'default', 'pointer', 'move', 'e-resize',
-    'ne-resize', 'nw-resize', 'n-resize', 'se-resize', 'sw-resize', 's-resize',
-    'w-resize', 'text', 'wait', 'help', 'progress'
+    'url(', 'auto', 'crosshair', 'default', 'pointer', 'move', 'e-resize', 'ne-resize', 'nw-resize',
+    'n-resize', 'se-resize', 'sw-resize', 's-resize', 'w-resize', 'text', 'wait', 'help', 'progress'
   },
   direction = {'ltr', 'rtl'},
   display = {
-    'none', 'block', 'inline', 'inline-block', 'inline-table', 'list-item',
-    'run-in', 'table', 'table-caption', 'table-cell', 'table-column',
-    'table-column-group', 'table-footer-group', 'table-header-group',
-    'table-row', 'table-row-group'
+    'none', 'block', 'inline', 'inline-block', 'inline-table', 'list-item', 'run-in', 'table',
+    'table-caption', 'table-cell', 'table-column', 'table-column-group', 'table-footer-group',
+    'table-header-group', 'table-row', 'table-row-group'
   },
   elevation = {'below', 'level', 'above', 'higher', 'lower'},
   ['empty-cells'] = {'hide', 'show'},
@@ -164,16 +143,15 @@ local values = {
   },
   ['font-family'] = {'sans-serif', 'serif', 'monospace', 'cursive', 'fantasy'},
   ['font-size'] = {
-    'xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large',
-    'smaller', 'larger'
+    'xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large', 'smaller', 'larger'
   },
   ['font-size-adjust'] = {'none'},
   --['font-stretch'] = nil,
   ['font-style'] = {'normal', 'italic', 'oblique'},
   ['font-variant'] = {'normal', 'small-caps'},
   ['font-weight'] = {
-    'normal', 'bold', 'bolder', 'lighter', '100', '200', '300', '400', '500',
-    '600', '700', '800', '900',
+    'normal', 'bold', 'bolder', 'lighter', '100', '200', '300', '400', '500', '600', '700', '800',
+    '900'
   },
   height = {'auto'},
   left = {'auto'},
@@ -183,9 +161,8 @@ local values = {
   ['list-style-image'] = {'url(', 'none'},
   ['list-style-position'] = {'inside', 'outside'},
   ['list-style-type'] = {
-    'none', 'disc', 'circle', 'square', 'decimal', 'decimal-leading-zero',
-    'armenian', 'georgian', 'lower-alpha', 'lower-greek', 'lower-latin',
-    'upper-latin', 'lower-roman', 'upper-roman'
+    'none', 'disc', 'circle', 'square', 'decimal', 'decimal-leading-zero', 'armenian', 'georgian',
+    'lower-alpha', 'lower-greek', 'lower-latin', 'upper-latin', 'lower-roman', 'upper-roman'
   },
   margin = {'auto'},
   ['margin-bottom'] = {'auto'},
@@ -201,8 +178,7 @@ local values = {
   --outline =
   ['outline-color'] = {'invert', 'rgb('},
   ['outline-style'] = {
-    'none', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset',
-    'outset'
+    'none', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset'
   },
   ['outline-width'] = {'thin', 'medium', 'thick'},
   overflow = {'auto', 'hidden', 'scroll', 'visible'},
@@ -228,23 +204,18 @@ local values = {
   ['speak-header'] = {'always', 'once'},
   ['speak-numeral'] = {'digits', 'continuous'},
   ['speak-punctuation'] = {'code', 'none'},
-  ['speech-rate'] = {
-    'x-slow', 'slow', 'medium', 'fast', 'x-fast', 'faster', 'slower'
-  },
+  ['speech-rate'] = {'x-slow', 'slow', 'medium', 'fast', 'x-fast', 'faster', 'slower'},
   --stress = nil,
   ['table-layout'] = {'auto', 'fixed'},
   ['text-align'] = {'left', 'right', 'center', 'justify'},
-  ['text-decoration'] = {
-    'none', 'underline', 'overline', 'line-through', 'blink'
-  },
+  ['text-decoration'] = {'none', 'underline', 'overline', 'line-through', 'blink'},
   --['text-indent'] = nil,
   ['text-shadow'] = {'none'},
   ['text-transform'] = {'none', 'capitalize', 'uppercase', 'lowercase'},
   top = {'auto'},
   ['unicode-bidi'] = {'normal', 'embed', 'bidi-override'},
   ['vertical-align'] = {
-    'baseline', 'sub', 'super', 'top', 'text-top', 'middle', 'bottom',
-    'text-bottom'
+    'baseline', 'sub', 'super', 'top', 'text-top', 'middle', 'bottom', 'text-bottom'
   },
   visibility = {'visible', 'hidden', 'collapse'},
   --['voice-family'] = nil,
@@ -252,13 +223,11 @@ local values = {
   ['white-space'] = {'normal', 'pre', 'nowrap', 'pre-wrap', 'pre-line'},
   --widows = nil,
   width = {'auto'},
-  ['word-spacing'] = {'normal'},
-  ['z-index'] = {'auto'}
+  ['word-spacing'] = {'normal'}, ['z-index'] = {'auto'}
 }
+-- LuaFormatter on
 for _, values in pairs(values) do
-  for i = 1, #values do
-    values[i] = completion:format(values[i], XPM.VARIABLE)
-  end
+  for i = 1, #values do values[i] = completion:format(values[i], XPM.VARIABLE) end
 end
 local initial = completion:format('initial', XPM.VARIABLE)
 local inherit = completion:format('inherit', XPM.VARIABLE)
@@ -267,9 +236,7 @@ values.background = {}
 for _, kind in ipairs{'attachment', 'color', 'image', 'position', 'repeat'} do
   values.background[#values.background + 1] = values['background-' .. kind]
 end
-values.border = {
-  values['border-color'], values['border-style'], values['border-width']
-}
+values.border = {values['border-color'], values['border-style'], values['border-width']}
 for _, direction in ipairs{'bottom', 'left', 'right', 'top'} do
   values['border-' .. direction] = values.border
   values['border-' .. direction .. '-color'] = values['border-color']
@@ -280,15 +247,13 @@ values['cue-after'], values['cue-before'] = values.cue, values.cue
 for _, kind in ipairs{'family', 'size', 'style', 'variant', 'weight'} do
   values.font[#values.font + 1] = values['font-' .. kind]
 end
-values.outline = {
-  values['outline-color'], values['outline-style'], values['outline-width']
-}
+values.outline = {values['outline-color'], values['outline-style'], values['outline-width']}
 values['page-break-before'] = values['page-break-after']
 
 textadept.editing.autocompleters.css = function()
   local list = {}
-  -- Retrieve the symbol behind the caret and determine whether it is a
-  -- selector, property, media type, etc.
+  -- Retrieve the symbol behind the caret and determine whether it is a selector, property,
+  -- media type, etc.
   local line, pos = buffer:get_cur_line()
   line = line:sub(1, pos - 1)
   local symbol, op, part = line:match('([%w-]-)(:?:?)%s*([%w-]*)$')
@@ -297,12 +262,14 @@ textadept.editing.autocompleters.css = function()
   local in_selector = line:find('{[^}]*$')
   local completions
   if not line:find('@media[^{]*$') then
-    -- Autocomplete selector, pseudoclass, pseudoelement, property, or value,
-    -- depending on context.
+    -- Autocomplete selector, pseudoclass, pseudoelement, property, or value, depending on context.
     if not in_selector then
       for i = buffer:line_from_position(buffer.current_pos) - 1, 1, -1 do
         local line = buffer:get_line(i)
-        if line:find('{[^}]*$') then in_selector = true break end
+        if line:find('{[^}]*$') then
+          in_selector = true
+          break
+        end
         if line:find('}[^{]*$') then break end -- not in selector
       end
     end
@@ -345,8 +312,6 @@ textadept.editing.autocompleters.css = function()
   return #part, list
 end
 
-textadept.editing.api_files.css = {
-  _HOME .. '/modules/css/api', _USERHOME .. '/modules/css/api'
-}
+textadept.editing.api_files.css = {_HOME .. '/modules/css/api', _USERHOME .. '/modules/css/api'}
 
 return M
